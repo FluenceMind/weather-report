@@ -8,8 +8,92 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/index.css">
+    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="./src/index.js"></script>
 </head>
 <body>
-</body>
+    <header>
+        <h1>Weather Report</h1>
+    </header>
+
+    <main id="weather-app"></main>
+    <!-- CITY SECTION -->
+        <section id="city-selection">
+            <h2 id="city-name-header">Seattle<h2>
+
+            <label for="city-name-input">City name:</label>
+            <input id="city-name-input" type="text" placeholder="Enter city" />
+
+            <button id="set-city-name-btn">Update City</button>
+            <button id="reset-city-name-btn">Reset</button>
+        </section> 
+
+    <!-- SKY -->
+        <section class="sky__section">
+          <h2>Sky</h2>
+          <label for="skySelect">Choose sky mood:</label>
+          <select id="skySelect">
+            <option>Sunny</option>
+            <option>Cloudy</option>
+            <option>Rainy</option>
+            <option>Snowy</option>
+          </select>
+        </section>
+
+    <!-- TEMPERATURE SECTION -->
+        <section id="temperature-section">
+        <h3>Temperature</h3>
+
+        <button id="decrease-temp-btn">-</button>
+        <span id="temperature-value">72</span>
+        <button id="increase-temp-btn">+</button>
+
+    <!-- SKY -->
+        <section class="sky__section">
+          <h2>Sky</h2>
+          <label for="skySelect">Choose sky mood:</label>
+          <select id="skySelect">
+            <option>Sunny</option>
+            <option>Cloudy</option>
+            <option>Rainy</option>
+            <option>Snowy</option>
+          </select>
+        </section>
+
+    <!-- CITY NAME -->
+        <section class="city-name__section">
+          <h2>City Name</h2>
+          <p class="city-name__hint">
+            Type a city you’d like to visit and see how the
+            garden changes.
+          </p>
+          <input
+            type="text"
+            id="cityNameInput"
+            value="Seattle"
+          />
+          <button
+            id="cityNameReset"
+            class="city-name__reset-btn"
+          >
+            Reset
+          </button>
+        </section>
+
+    <!-- GARDEN -->
+        <section class="garden__section">
+          <h2>Weather Garden</h2>
+          <p class="garden__hint">
+            The garden reflects both the temperature and the
+            sky above.
+          </p>
+          <div id="gardenContent" class="garden__content">
+            <div id="sky"></div>
+            <div id="landscape"></div>
+          </div>
+        </section>
+      </main>
+
+
+    </body>
 </html>
