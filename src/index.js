@@ -1,28 +1,35 @@
 
 const state = {
-    getRealTimeTemperatureButton: null,
     addOneButton: null,
     minusOneButton: null,
-    temperatureValue: 0,
-    resetButton: null,
+    temperatureValue: 72,
+    tempdisplay: null,
 };
 
-const upArrowClicked = () => {
+const addtempButton = () => {
     state.temperatureValue += 1;
-    state.tempDisplay.textContent = `${state.temperature-value}`;
-
-
+    state.tempdisplay.textContent = `${state.temperatureValue}`;
 };
 
-const tempColor = () => {
-    state.
-}
-
+const minustempButton = () => {
+    state.temperatureValue -= 1;
+    state.tempdisplay.textContent = `${state.temperatureValue}`;
+};
 
 const loadControls = () => {
     state.addOneButton = document.getElementById('increase-temp-btn');
     state.minusOneButton = document.getElementById('decrease-temp-btn');
-    state.temperatureValue = document.getElementById('temperature-value');
+    state.tempdisplay = document.getElementById('temperature-value');
+};
+const registerEvents = () => {
+    state.addOneButton.addEventListener('click', addtempButton);
+    state.minusOneButton.addEventListener('click', minustempButton);
 };
 
-const registerEvents
+const onLoaded = () => {
+    loadControls();
+    registerEvents();
+};
+
+
+onLoaded()
