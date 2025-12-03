@@ -12,7 +12,6 @@
     <script defer src="./src/index.js"></script>
 </head>
 <body>
-  <!-- Header with title and city name -->
   <header class="header__header">
     <h1>Weather Report</h1>
     <span>
@@ -21,10 +20,8 @@
     </span>
   </header>
 
-  <!-- Main grid layout: controls on the left, garden on the right -->
   <main class="main">
-
-    <!-- Temperature card -->
+    <!-- Temperature section -->
     <section class="temperature__section">
       <h2>Temperature</h2>
       <div class="temperature__content">
@@ -37,7 +34,7 @@
       </div>
     </section>
 
-    <!-- Sky card -->
+    <!-- Sky section -->
     <section class="sky__section">
       <h2>Sky</h2>
       <select id="skySelect">
@@ -48,16 +45,14 @@
       </select>
     </section>
 
-    <!-- City name card -->
+    <!-- City name section -->
     <section class="city-name__section">
       <h2>City Name</h2>
       <input type="text" id="cityNameInput" value="Seattle" />
-      <button id="cityNameReset" class="city-name__reset-btn">
-        Reset
-      </button>
+      <button id="cityNameReset" class="city-name__reset-btn">Reset</button>
     </section>
 
-    <!-- Weather Garden card -->
+    <!-- Weather garden section -->
     <section class="garden__section">
       <h2>Weather Garden</h2>
       <div id="gardenContent" class="garden__content">
@@ -65,7 +60,6 @@
         <div id="landscape"></div>
       </div>
     </section>
-
   </main>
 </body>
 
