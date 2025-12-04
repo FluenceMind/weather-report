@@ -12,89 +12,55 @@
     <script defer src="./src/index.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Weather Report</h1>
-    </header>
+  <header class="header__header">
+    <h1>Weather Report</h1>
+    <span>
+      For the lovely city of
+      <span id="headerCityName" class="header__city-name"></span>
+    </span>
+  </header>
 
-    <main id="weather-app"></main>
-    <!-- CITY SECTION -->
-        <section id="city-selection">
-            <h2 id="city-name-header">Seattle<h2>
+  <main class="main">
+    <!-- Temperature section -->
+    <section class="temperature__section">
+      <h2>Temperature</h2>
+      <div class="temperature__content">
+        <div class="temperature__controls">
+          <span id="increaseTempControl">⬆️</span>
+          <span id="tempValue"></span>
+          <span id="decreaseTempControl">⬇️</span>
+        </div>
+        <button id="currentTempButton">Get Realtime Temperature</button>
+      </div>
+    </section>
 
-            <label for="city-name-input">City name:</label>
-            <input id="city-name-input" type="text" placeholder="Enter city" />
+    <!-- Sky section -->
+    <section class="sky__section">
+      <h2>Sky</h2>
+      <select id="skySelect">
+        <option>Sunny</option>
+        <option>Cloudy</option>
+        <option>Rainy</option>
+        <option>Snowy</option>
+      </select>
+    </section>
 
-            <button id="set-city-name-btn">Update City</button>
-            <button id="reset-city-name-btn">Reset</button>
-        </section> 
+    <!-- City name section -->
+    <section class="city-name__section">
+      <h2>City Name</h2>
+      <input type="text" id="cityNameInput" value="Seattle" />
+      <button id="cityNameReset" class="city-name__reset-btn">Reset</button>
+    </section>
 
-    <!-- SKY -->
-        <section class="sky__section">
-          <h2>Sky</h2>
-          <label for="skySelect">Choose sky mood:</label>
-          <select id="skySelect">
-            <option>Sunny</option>
-            <option>Cloudy</option>
-            <option>Rainy</option>
-            <option>Snowy</option>
-          </select>
-        </section>
+    <!-- Weather garden section -->
+    <section class="garden__section">
+      <h2>Weather Garden</h2>
+      <div id="gardenContent" class="garden__content">
+        <div id="sky"></div>
+        <div id="landscape"></div>
+      </div>
+    </section>
+  </main>
+</body>
 
-    <!-- TEMPERATURE SECTION -->
-        <section id="temperature-section">
-          <h3>Temperature</h3>
-
-          <button id="decrease-temp-btn">-</button>
-          <span id="temperature-value">72</span>
-          <button id="increase-temp-btn">+</button>
-        </section>
-
-    <!-- SKY -->
-        <section class="sky__section">
-          <h2>Sky</h2>
-          <label for="skySelect">Choose sky mood:</label>
-          <select id="skySelect">
-            <option>Sunny</option>
-            <option>Cloudy</option>
-            <option>Rainy</option>
-            <option>Snowy</option>
-          </select>
-        </section>
-
-    <!-- CITY NAME -->
-        <section class="city-name__section">
-          <h2>City Name</h2>
-          <p class="city-name__hint">
-            Type a city you’d like to visit and see how the
-            garden changes.
-          </p>
-          <input
-            type="text"
-            id="cityNameInput"
-            value="Seattle"
-          />
-          <button
-            id="cityNameReset"
-            class="city-name__reset-btn"
-          >
-            Reset
-          </button>
-        </section>
-
-    <!-- GARDEN -->
-        <section class="garden__section">
-          <h2>Weather Garden</h2>
-          <p class="garden__hint">
-            The garden reflects both the temperature and the
-            sky above.
-          </p>
-          <div id="gardenContent" class="garden__content">
-            <div id="sky"></div>
-            <div id="landscape"></div>
-          </div>
-        </section>
-      </main>
-
-
-    </body>
 </html>
