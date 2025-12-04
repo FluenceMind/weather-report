@@ -6,6 +6,8 @@ const state = {
     tempValue: null,
     tempDisplay: null,
     landscapeDisplay: null,
+    cityNameInput: null,
+    headerCityName: null,
 };
 
 const addtempButton = () => {
@@ -39,20 +41,29 @@ const tempValueColorPatternChange = () => {
     }
 }
 
+const updateCityName = () => {
+    const newCityName = state.cityNameInput.value;
+    state.headerCityName.textContent = newCityName;
+};
+
 const loadControls = () => {
     state.addOneButton = document.getElementById('increaseTempControl');
     state.minusOneButton = document.getElementById('decreaseTempControl');
     state.tempDisplay = document.getElementById('tempValue');
     state.landscapeDisplay = document.getElementById('landscape');
+    state.cityNameInput = document.getElementById('cityNameInput');
+    state.headerCityName = document.getElementById('headerCityName');
 };
 const registerEvents = () => {
     state.addOneButton.addEventListener('click', addtempButton);
     state.minusOneButton.addEventListener('click', minustempButton);
+    state.cityNameInput.addEventListener('input', updateCityName);
 };
 
 const onLoaded = () => {
     loadControls();
     registerEvents();
+    state.headerCityName.textContent = state.cityNameInput.value;
 };
 
 
