@@ -3,24 +3,47 @@
 const state = {
     addOneButton: null,
     minusOneButton: null,
-    temperatureValue: 72,
-    tempdisplay: null,
+    tempValue: null,
+    tempDisplay: null,
+    landscapeDisplay: null,
 };
 
 const addtempButton = () => {
-    state.temperatureValue += 1;
-    state.tempdisplay.textContent = `${state.temperatureValue}`;
+    state.tempValue += 1;
+    state.tempDisplay.textContent = `${state.tempValue}`;
+    tempValueColorPatternChange();
 };
 
 const minustempButton = () => {
-    state.temperatureValue -= 1;
-    state.tempdisplay.textContent = `${state.temperatureValue}`;
+    state.tempValue -= 1;
+    state.tempDisplay.textContent = `${state.tempValue}`;
+    tempValueColorPatternChange();
 };
 
+const tempValueColorPatternChange = () => {
+    if (state.tempValue >= 80) {
+        state.tempDisplay.style.color = 'red';
+        state.landscapeDisplay.textContent = `🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂`;
+    } else if (state.tempValue >= 70 && state.tempValue <= 79) {
+        state.tempDisplay.style.color = 'orange';
+        state.landscapeDisplay.textContent = `"🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷"`;
+    } else if (state.tempValue >= 60 && state.tempValue <= 69) {
+        state.tempDisplay.style.color = 'yellow';
+        state.landscapeDisplay.textContent = `"🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃"` ;
+    } else if (state.tempValue >= 50 && state.tempValue <= 59) {
+        state.tempDisplay.style.color = 'green';
+        state.landscapeDisplay.textContent = `"🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲"`;
+    } else if (state.tempValue <= 49) {
+        state.tempDisplay.style.color = 'teal';
+        state.landscapeDisplay.textContent = `"🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲"`;
+    }
+}
+
 const loadControls = () => {
-    state.addOneButton = document.getElementById('increase-temp-btn');
-    state.minusOneButton = document.getElementById('decrease-temp-btn');
-    state.tempdisplay = document.getElementById('temperature-value');
+    state.addOneButton = document.getElementById('increaseTempControl');
+    state.minusOneButton = document.getElementById('decreaseTempControl');
+    state.tempDisplay = document.getElementById('tempValue');
+    state.landscapeDisplay = document.getElementById('landscape');
 };
 const registerEvents = () => {
     state.addOneButton.addEventListener('click', addtempButton);
