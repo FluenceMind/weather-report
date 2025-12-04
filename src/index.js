@@ -1,4 +1,3 @@
-
 const state = {
     addOneButton: null,
     minusOneButton: null,
