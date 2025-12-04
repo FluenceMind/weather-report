@@ -1,14 +1,21 @@
+import {
+  findLatitudeAndLongitude,
+  getWeatherTemp,
+} from '../src/apicall.js';
+
 "use strict";
 
 const state = {
     addOneButton: null,
     minusOneButton: null,
-    tempValue: null,
+    realTimeButton: null,
+    tempValue: 0,
     tempDisplay: null,
     landscapeDisplay: null,
     cityNameInput: null,
     headerCityName: null,
 };
+
 
 const addtempButton = () => {
     state.tempValue += 1;
@@ -39,11 +46,23 @@ const tempValueColorPatternChange = () => {
         state.tempDisplay.style.color = 'teal';
         state.landscapeDisplay.textContent = `"🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲"`;
     }
-}
+};
 
 const updateCityName = () => {
     const newCityName = state.cityNameInput.value;
     state.headerCityName.textContent = newCityName;
+};
+
+const realTimeWeatherTemp = () => {
+    findLatitudeAndLongitude(state.cityNameInput.value)
+      .then(({latitude, longitude}) => getWeatherTemp(latitude,longitude))
+      .then(({weatherTemp})=> {
+        state.tempValue = weatherTemp;
+        state.tempDisplay.textContent = `${state.tempValue}`;
+        tempValueColorPatternChange();
+      }).catch((error) => {
+        console.log('error');
+      });
 };
 
 const loadControls = () => {
@@ -53,18 +72,20 @@ const loadControls = () => {
     state.landscapeDisplay = document.getElementById('landscape');
     state.cityNameInput = document.getElementById('cityNameInput');
     state.headerCityName = document.getElementById('headerCityName');
+    state.realTimeButton = document.getElementById('currentTempButton');
 };
 const registerEvents = () => {
     state.addOneButton.addEventListener('click', addtempButton);
     state.minusOneButton.addEventListener('click', minustempButton);
+    state.realTimeButton.addEventListener('click', realTimeWeatherTemp);
     state.cityNameInput.addEventListener('input', updateCityName);
 };
 
 const onLoaded = () => {
     loadControls();
     registerEvents();
-    state.headerCityName.textContent = state.cityNameInput.value;
+    updateCityName();
 };
 
 
-onLoaded()
+onLoaded();
