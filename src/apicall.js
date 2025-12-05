@@ -1,19 +1,12 @@
-const axios = require('axios')
-const dotEnv = require('dotenv');
+const axios = window.axios
 
-dotEnv.config();
-const LOCATIONIQ_KEY = process.env.LOCATION_API_KEY;
-const WEATHER_KEY = process.env.WEATHER_API_KEY;
-
-const findLatitudeAndLongitude = (cityName) => {
+export const findLatitudeAndLongitude = (cityName) => {
   let latitude, longitude;
 
-  return axios.get('https://us1.locationiq.com/v1/search.php',
+  return axios.get('http://localhost:5000/location',
     {
       params : {
-        key: LOCATIONIQ_KEY,
         q: cityName,
-        format: 'json'
       }
     })
     .then((response) => {
@@ -28,20 +21,20 @@ const findLatitudeAndLongitude = (cityName) => {
     });
 };
 
-const getWeatherTemp = (latitude, longitude) => {
-    let weatherStatus;
+export const getWeatherTemp = (latitude, longitude) => {
+    let weatherTemp;
 
-    return axios.get('https://api.openweathermap.org/data/3.0/onecall',
+    return axios.get('http://localhost:5000/weather',
     {
       params:{
         lat: latitude,
         lon: longitude,
-        appid: WEATHER_KEY,
       }
     })
     .then((response) => {
-      ktemp = response.data.current.temp;
+      let ktemp = response.data.main.temp;
       weatherTemp = (ktemp - 273.15) * (9 / 5) + 32;
+      weatherTemp = Math.ceil(weatherTemp)
       console.log('success in getWeatherTemp!', weatherTemp);
       return {weatherTemp};
     })
@@ -49,5 +42,4 @@ const getWeatherTemp = (latitude, longitude) => {
       console.log('error in getWeatherTemp!');
     });
 };
-
 
