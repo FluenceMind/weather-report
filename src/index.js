@@ -1,8 +1,8 @@
-/*import {
+import {
   findLatitudeAndLongitude,
   getWeatherTemp,
 } from '../src/apicall.js';
-*/
+
 
 
 const state = {
@@ -16,6 +16,7 @@ const state = {
     headerCityName: null,
     skySelect: null,
     skyDisplay: null,
+    resetButton: null,
 };
 
 
@@ -29,6 +30,15 @@ const minustempButton = () => {
     state.tempValue -= 1;
     state.tempDisplay.textContent = `${state.tempValue}`;
     tempValueColorPatternChange();
+};
+
+const resetInputButton = () => {
+    state.tempValue = '';
+    state.tempDisplay.textContent = `${state.tempValue}`;
+    state.skyDisplay.textContent = '';
+    state.landscapeDisplay.textContent = '';
+    state.cityNameInput.value = 'Seattle';
+    state.headerCityName.textContent = 'Seattle'; 
 };
 
 const tempValueColorPatternChange = () => {
@@ -91,11 +101,13 @@ const loadControls = () => {
     state.realTimeButton = document.getElementById('currentTempButton');
     state.skySelect = document.getElementById('skySelect');
     state.skyDisplay = document.getElementById('sky');
+    state.resetButton = document.getElementById('cityNameReset');
 };
 const registerEvents = () => {
     state.addOneButton.addEventListener('click', addtempButton);
     state.minusOneButton.addEventListener('click', minustempButton);
     state.realTimeButton.addEventListener('click', realTimeWeatherTemp);
+    state.resetButton.addEventListener('click', resetInputButton);
     state.cityNameInput.addEventListener('input', updateCityName);
     state.skySelect.addEventListener('change', updateSky);
 };
@@ -104,7 +116,7 @@ const onLoaded = () => {
     loadControls();
     registerEvents();
     updateCityName();
-    updateSky();
+    // updateSky();
 };
 
 
