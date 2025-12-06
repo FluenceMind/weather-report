@@ -1,9 +1,9 @@
-import {
+/*import {
   findLatitudeAndLongitude,
   getWeatherTemp,
 } from '../src/apicall.js';
+*/
 
-"use strict";
 
 const state = {
     addOneButton: null,
@@ -14,6 +14,8 @@ const state = {
     landscapeDisplay: null,
     cityNameInput: null,
     headerCityName: null,
+    skySelect: null,
+    skyDisplay: null,
 };
 
 
@@ -53,6 +55,20 @@ const updateCityName = () => {
     state.headerCityName.textContent = newCityName;
 };
 
+const updateSky = () => {
+    const skyChoice = state.skySelect.value;
+
+    if (skyChoice === 'Sunny') {
+        state.skyDisplay.textContent = '☁️ ☁️ ☁️ ☀️ ☁️ ☁️';
+    } else if (skyChoice === 'Cloudy') {
+        state.skyDisplay.textContent = '☁️☁️ ☁️ ☁️☁️ ☁️ 🌤 ☁️ ☁️☁️';
+    } else if (skyChoice === 'Rainy') {
+        state.skyDisplay.textContent = '🌧🌈⛈🌧🌧💧⛈🌧🌦🌧💧🌧🌧';
+    } else if (skyChoice === 'Snowy') {
+        state.skyDisplay.textContent = '🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨';
+    }
+};
+
 const realTimeWeatherTemp = () => {
     findLatitudeAndLongitude(state.cityNameInput.value)
       .then(({latitude, longitude}) => getWeatherTemp(latitude,longitude))
@@ -73,18 +89,22 @@ const loadControls = () => {
     state.cityNameInput = document.getElementById('cityNameInput');
     state.headerCityName = document.getElementById('headerCityName');
     state.realTimeButton = document.getElementById('currentTempButton');
+    state.skySelect = document.getElementById('skySelect');
+    state.skyDisplay = document.getElementById('sky');
 };
 const registerEvents = () => {
     state.addOneButton.addEventListener('click', addtempButton);
     state.minusOneButton.addEventListener('click', minustempButton);
     state.realTimeButton.addEventListener('click', realTimeWeatherTemp);
     state.cityNameInput.addEventListener('input', updateCityName);
+    state.skySelect.addEventListener('change', updateSky);
 };
 
 const onLoaded = () => {
     loadControls();
     registerEvents();
     updateCityName();
+    updateSky();
 };
 
 
