@@ -116,7 +116,7 @@ const onLoaded = () => {
     loadControls();
     registerEvents();
     updateCityName();
-    // updateSky();
+    updateSky();
 };
 
 
